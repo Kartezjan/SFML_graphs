@@ -19,4 +19,4 @@ Execute simple algorithms.
 ## What You Can't Do (Yet)
 Save or load a graph from file.
 
-Execute fun algorithms.
+Execute excellent algorithms.
