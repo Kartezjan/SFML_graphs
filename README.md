@@ -1,6 +1,8 @@
 # SFML_graphs (interactive graph editor)
 ## Why bother
 I wrote that for fun & excerise. So I would say that the featured application has only didactic purposes.
+## Dependencies
+- [SFML](http://sfml.org)
 ## What You Can Do
 Draw cool graphs (of course),
 
