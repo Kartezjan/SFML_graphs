@@ -93,4 +93,5 @@ void vertex::reset()
 	parent = nullptr;
 	show_distance = false;
 	d = -1; f = -1;
+	display_distance.setString("INF");
 }
