@@ -1,6 +1,6 @@
 # SFML_graphs (interactive graph editor)
 ## Why bother
-I wrote that for fun & excerise. 
+I wrote that for fun & excerise. So I would say that the featured application has only didactic purposes.
 ## What You Can Do
 Draw cool graphs (of course),
 
