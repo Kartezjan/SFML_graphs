@@ -19,6 +19,6 @@ Execute simple algorithms.
 - Breadth First Search (with step-by-step available) (B to enter mode) 
 - Dept First Search (D)
 ## What You Can't Do (Yet)
-Save or load a graph from file.
+~~Save or load a graph from file.~~ (Done!)
 
 Execute excellent algorithms.
