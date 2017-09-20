@@ -22,7 +22,7 @@ void engine::BFS_step()
 		return;
 	auto u = bfs_queue.front();
 	bfs_queue.pop();
-	for(auto adj : u->get_adjascents())
+	for(auto adj : u->get_adjacents())
 	{
 		if(adj->get_color() == vertex_color::white)
 		{
@@ -44,16 +44,16 @@ void engine::DFS()
 	}
 	dfs_time = 0;
 	bfs_queue = {};
-	for (auto vertex : vertices)
+	for (auto& vertex : vertices)
 		if (vertex->get_color() == vertex_color::white)
-			DFS_step(vertex);
+			DFS_step(vertex.get());
 }
 
 void engine::DFS_step(vertex* a)
 {
 	a->set_d(++dfs_time);
 	a->set_color(vertex_color::gray);
-	for(auto vertex : a->get_adjascents())
+	for(auto vertex : a->get_adjacents())
 		if(vertex->get_color() == vertex_color::white)
 		{
 			vertex->set_parent(a);

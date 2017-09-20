@@ -1,13 +1,14 @@
 #include "vertex.h"
 
 
-vertex::vertex(float x, float y, std::string name) : circle(SIZE), display_name(name, *font::get_font(),30)
+vertex::vertex(int id, float x, float y, std::string name) : circle(SIZE), display_name(name, *font::get_font(),30)
 {
 	selected = false;
 	circle.setPosition(x, y);
 	circle.setOutlineColor(sf::Color::Black);
 	circle.setOutlineThickness(2.f);
 	this->name = name;
+	this->id = id;
 	display_name.setPosition(x + SIZE/5*3,y + SIZE/4);
 	display_name.setFillColor(sf::Color::Black);
 
@@ -31,6 +32,31 @@ void vertex::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		target.draw(display_distance);
 }
 
+std::string vertex::get_name() const
+{
+	return name;
+}
+
+sf::Vector2f vertex::get_position() const
+{
+	return position;
+}
+
+std::vector<vertex*>& vertex::get_adjacents()
+{
+	return adjacents; 
+}
+
+int vertex::get_distance() const
+{
+	 return distance;
+}
+
+vertex * vertex::get_parent() const
+{
+	return parent;
+}
+
 void vertex::toggle_select()
 {
 	if(!selected)
@@ -43,6 +69,11 @@ void vertex::toggle_select()
 		selected = false;
 		circle.setOutlineColor(sf::Color::Black);
 	}
+}
+
+bool vertex::is_selected() const
+{
+	 return selected;
 }
 
 void vertex::set_position(sf::Vector2f pos)
@@ -73,9 +104,42 @@ void vertex::set_color(vertex_color new_color)
 	}
 }
 
-void vertex::add_adjascent(vertex* adj)
+void vertex::set_distance(int dis)
 {
-	adjascents.push_back(adj);
+	distance = dis; 
+	display_distance.setString(std::to_string(dis));
+}
+
+void vertex::set_parent(vertex * other)
+{
+	 parent = other;
+}
+
+void vertex::toggle_distance_display(bool set)
+{
+ show_distance = set;
+}
+
+vertex_color vertex::get_color() const
+{
+	return color;
+}
+
+void vertex::add_adjacent(vertex* adj)
+{
+	adjacents.push_back(adj);
+}
+
+void vertex::set_d(int new_d)
+{
+	d = new_d;
+	dfs_display(); 
+}
+
+void vertex::set_f(int new_f)
+{
+ f = new_f; 
+ dfs_display();
 }
 
 void vertex::dfs_display()
@@ -94,4 +158,12 @@ void vertex::reset()
 	show_distance = false;
 	d = -1; f = -1;
 	display_distance.setString("INF");
+}
+
+bool vertex::has_edge(vertex * vertex)
+{
+	auto found = std::find(adjacents.begin(), adjacents.end(), vertex);
+	if(found == adjacents.end())
+		return false;
+	return true;
 }

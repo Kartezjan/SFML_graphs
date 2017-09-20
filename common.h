@@ -6,10 +6,13 @@
 #include <SFML/Graphics.hpp>
 #include <queue>
 #include <stack>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
 
 #include "helper.h"
 
-#define SIZE 25.f
+constexpr float SIZE = 25.f;
 
 enum class object_type {vertex, edge, none};
 enum class mouse_mode {insert, remove, select, move, edge, bfs};
